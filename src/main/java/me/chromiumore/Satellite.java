@@ -9,7 +9,7 @@ public abstract class Satellite {
         this.name = name;
         this.batteryLevel = batteryLevel;
         this.isActive = false;
-        System.out.println("Создан спутник: " + this);
+        System.out.println("Создан спутник: " + String.format("%s (заряд: %d%%)", name, (int) (batteryLevel * 100)));
     }
 
     protected abstract void performMission();
@@ -18,6 +18,13 @@ public abstract class Satellite {
         if (batteryLevel > 0.2) {
             isActive = true;
         }
+
+        if (isActive) {
+            System.out.printf("✅ %s: Активация успешна\n", name);
+        } else {
+            System.out.printf("\uD83D\uDED1 %s: Ошибка активации (заряд: %d%%)\n", name, (int) (batteryLevel * 100));
+        }
+
         return isActive;
     }
 

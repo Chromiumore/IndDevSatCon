@@ -27,6 +27,6 @@ public class CommunicationSatellite extends Satellite {
 
     @Override
     public String toString() {
-        return String.format("Связь-%s (заряд: %d%%)\n", name, (int) (batteryLevel * 100));
+        return String.format("CommunicationSatellite{bandwidth=%f, name='%s', isActive=%b, batteryLevel=%f}", bandwidth, name, isActive, batteryLevel);
     }
 }

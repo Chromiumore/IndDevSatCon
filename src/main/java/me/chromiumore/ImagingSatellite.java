@@ -4,8 +4,10 @@ public class ImagingSatellite extends Satellite{
     private double resolution;
     private int photosTaken;
 
-    public ImagingSatellite(String name, double batteryLevel) {
+    public ImagingSatellite(String name, double batteryLevel, double resolution) {
         super(name, batteryLevel);
+        this.resolution = resolution;
+        photosTaken = 0;
     }
 
     public double getResolution() {
@@ -30,6 +32,6 @@ public class ImagingSatellite extends Satellite{
 
     @Override
     public String toString() {
-        return String.format("ДЗЗ-%s (заряд: %d%%)\n", name, (int) batteryLevel * 100);
+        return String.format("ImagingSatellite{resolution=%f, photosTaken=%d, name='%s', isActive=%b, batteryLevel=%f}", resolution, photosTaken, name, isActive, batteryLevel);
     }
 }
