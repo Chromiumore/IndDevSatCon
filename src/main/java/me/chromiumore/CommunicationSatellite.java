@@ -15,10 +15,8 @@ public class CommunicationSatellite extends Satellite {
     @Override
     public void performMission() {
         if (isActive) {
-            System.out.printf("%s: Передача данных со скоростью %f Мбит/с\n", name, bandwidth);
             consumeBattery(0.05);
             sendData(bandwidth);
-            System.out.printf("%s: Отправил %f Мбит данных!\n", name, bandwidth);
             return;
         }
 
@@ -26,12 +24,12 @@ public class CommunicationSatellite extends Satellite {
     }
 
     private void sendData(double amount) {
-        System.out.printf("%s: Передача данных со скоростью %f Мбит/с\n", name, bandwidth);
-        System.out.printf("%s: Отправил %f Мбит данных!\n", name, amount);
+        System.out.printf("%s: Передача данных со скоростью %.1f Мбит/с\n", name, bandwidth);
+        System.out.printf("%s: Отправил %.1f Мбит данных!\n", name, amount);
     }
 
     @Override
     public String toString() {
-        return String.format("CommunicationSatellite{bandwidth=%f, name='%s', isActive=%b, batteryLevel=%f}", bandwidth, name, isActive, batteryLevel);
+        return String.format("CommunicationSatellite{bandwidth=%.1f, name='%s', isActive=%b, batteryLevel=%.2f}", bandwidth, name, isActive, batteryLevel);
     }
 }

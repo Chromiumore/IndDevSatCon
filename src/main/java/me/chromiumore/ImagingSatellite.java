@@ -21,10 +21,8 @@ public class ImagingSatellite extends Satellite{
     @Override
     public void performMission() {
         if (isActive) {
-            System.out.printf("%s: Съемка территории с разрешением %f м/пиксель\n", name, resolution);
             consumeBattery(0.08);
             takePhoto();
-            System.out.printf("%s: Снимок #%d сделан!\n", name, photosTaken);
             return;
         }
 
@@ -32,11 +30,13 @@ public class ImagingSatellite extends Satellite{
     }
 
     private void takePhoto() {
+        System.out.printf("%s: Съемка территории с разрешением %.1f м/пиксель\n", name, resolution);
         photosTaken++;
+        System.out.printf("%s: Снимок #%d сделан!\n", name, photosTaken);
     }
 
     @Override
     public String toString() {
-        return String.format("ImagingSatellite{resolution=%f, photosTaken=%d, name='%s', isActive=%b, batteryLevel=%f}", resolution, photosTaken, name, isActive, batteryLevel);
+        return String.format("ImagingSatellite{resolution=%.1f, photosTaken=%d, name='%s', isActive=%b, batteryLevel=%.2f}", resolution, photosTaken, name, isActive, batteryLevel);
     }
 }
