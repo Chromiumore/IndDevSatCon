@@ -21,9 +21,14 @@ public class ImagingSatellite extends Satellite{
     @Override
     public void performMission() {
         if (isActive) {
+            System.out.printf("%s: Съемка территории с разрешением %f м/пиксель\n", name, resolution);
             consumeBattery(0.08);
             takePhoto();
+            System.out.printf("%s: Снимок #%d сделан!\n", name, photosTaken);
+            return;
         }
+
+        System.out.printf("\uD83D\uDED1 %s: Не может выполнить съемку - не активен\n", name);
     }
 
     private void takePhoto() {

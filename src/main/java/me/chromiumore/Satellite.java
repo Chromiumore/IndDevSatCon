@@ -39,7 +39,7 @@ public abstract class Satellite {
             batteryLevel = 0;
         }
 
-        if (batteryLevel <= 20) {
+        if (batteryLevel <= 0.2) {
             deactivate();
         }
     }

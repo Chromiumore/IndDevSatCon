@@ -20,6 +20,8 @@ public class SatelliteConstellation {
     }
 
     public void executeAllMissions() {
+        System.out.println("ВЫПОЛНЕНИЕ МИССИЙ ГРУППИРОВКИ RU BASIC\n" +
+                "==================================================");
         for (Satellite sat : satellites) {
             sat.performMission();
         }

@@ -41,5 +41,8 @@ public class Main {
         for (Satellite sat : constellation.getSatellites()) {
             sat.activate();
         }
+
+        constellation.executeAllMissions();
+        System.out.println(constellation.getSatellites());
     }
 }
