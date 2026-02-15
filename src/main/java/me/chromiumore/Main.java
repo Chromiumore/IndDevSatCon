@@ -44,5 +44,6 @@ public class Main {
 
         constellation.executeAllMissions();
         System.out.println(constellation.getSatellites());
+        com1.deactivate();
     }
 }

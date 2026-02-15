@@ -14,8 +14,8 @@ public class CommunicationSatellite extends Satellite {
 
     @Override
     public void performMission() {
-        if (isActive) {
-            consumeBattery(0.05);
+        if (state.isActive()) {
+            energy.consume(0.05);
             sendData(bandwidth);
             return;
         }
@@ -30,6 +30,6 @@ public class CommunicationSatellite extends Satellite {
 
     @Override
     public String toString() {
-        return String.format("CommunicationSatellite{bandwidth=%.1f, name='%s', isActive=%b, batteryLevel=%.2f}", bandwidth, name, isActive, batteryLevel);
+        return String.format("CommunicationSatellite{bandwidth=%.1f, name='%s', isActive=%b, batteryLevel=%.2f}", bandwidth, name, state.isActive(), energy.getBatteryLevel());
     }
 }

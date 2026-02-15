@@ -20,8 +20,8 @@ public class ImagingSatellite extends Satellite{
 
     @Override
     public void performMission() {
-        if (isActive) {
-            consumeBattery(0.08);
+        if (state.isActive()) {
+            energy.consume(0.08);
             takePhoto();
             return;
         }
@@ -37,6 +37,6 @@ public class ImagingSatellite extends Satellite{
 
     @Override
     public String toString() {
-        return String.format("ImagingSatellite{resolution=%.1f, photosTaken=%d, name='%s', isActive=%b, batteryLevel=%.2f}", resolution, photosTaken, name, isActive, batteryLevel);
+        return String.format("ImagingSatellite{resolution=%.1f, photosTaken=%d, name='%s', isActive=%b, batteryLevel=%.2f}", resolution, photosTaken, name, state.isActive(), energy.getBatteryLevel());
     }
 }
