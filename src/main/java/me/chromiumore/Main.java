@@ -1,12 +1,19 @@
 package me.chromiumore;
 
+import me.chromiumore.repositories.ConstellationRepository;
+import me.chromiumore.services.SpaceOperationCenterService;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
 public class Main {
     public static void main(String[] args) {
         System.out.println("ЗАПУСК СИСТЕМЫ УПРАВЛЕНИЯ СПУТНИКОВОЙ ГРУППИРОВКОЙ\n" +
                 "============================================================");
 
+        ConstellationRepository constellationRepository = new ConstellationRepository();
+        SpaceOperationCenterService operationCenter = new SpaceOperationCenterService(constellationRepository);
 
-        System.out.println("СОЗДАНИЕ СПЕЦИАЛИЗИРОВАННЫХ СПУТНИКОВ:\n" +
+        System.out.println("\nСОЗДАНИЕ СПЕЦИАЛИЗИРОВАННЫХ СПУТНИКОВ:\n" +
                 "---------------------------------------------");
 
         Satellite com1 = new CommunicationSatellite("Связь-1", 0.85, 500);
@@ -18,32 +25,35 @@ public class Main {
         System.out.println("---------------------------------------------");
 
 
-        SatelliteConstellation constellation = new SatelliteConstellation("RU Basic");
+        operationCenter.createAndSaveConstellation("Орбита-1");
+        operationCenter.createAndSaveConstellation("Орбита-2");
 
 
-        System.out.println("ФОРМИРОВАНИЕ ГРУППИРОВКИ:\n" +
+        System.out.println("\nФОРМИРОВАНИЕ ГРУППИРОВКИ:\n" +
                 "-----------------------------------");
 
-        constellation.addSatellite(com1);
-        constellation.addSatellite(com2);
-        constellation.addSatellite(img1);
-        constellation.addSatellite(img2);
-        constellation.addSatellite(img3);
+        operationCenter.addSatelliteToConstellation("Орбита-1", com1);
+        operationCenter.addSatelliteToConstellation("Орбита-1", img1);
+        operationCenter.addSatelliteToConstellation("Орбита-2", img2);
+        operationCenter.addSatelliteToConstellation("Орбита-2", com2);
+        operationCenter.addSatelliteToConstellation("Орбита-2", img3);
 
         System.out.println("-----------------------------------");
 
-        System.out.println(constellation.getSatellites());
+        operationCenter.showConstellationStatus("Орбита-1");
+        operationCenter.showConstellationStatus("Орбита-2");
+
         System.out.println("-----------------------------------");
 
 
-        System.out.println("АКТИВАЦИЯ СПУТНИКОВ:\n" +
-                "-------------------------");
-        for (Satellite sat : constellation.getSatellites()) {
-            sat.activate();
-        }
+        System.out.println("\nАКТИВАЦИЯ СПУТНИКОВ:\n-------------------------");
+        operationCenter.activateAllSatellites("Орбита-1");
+        operationCenter.activateAllSatellites("Орбита-2");
 
-        constellation.executeAllMissions();
-        System.out.println(constellation.getSatellites());
-        com1.deactivate();
+        operationCenter.executeConstellationMission("Орбита-1");
+        operationCenter.executeConstellationMission("Орбита-2");
+
+        operationCenter.showConstellationStatus("Орбита-1");
+        operationCenter.showConstellationStatus("Орбита-2");
     }
 }

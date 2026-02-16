@@ -28,4 +28,12 @@ public abstract class Satellite {
             state.deactivate();
         }
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getStatus() {
+        return state.getStatusMessage();
+    }
 }
