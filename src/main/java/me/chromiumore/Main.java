@@ -44,6 +44,7 @@ public class Main {
 
         System.out.println("-----------------------------------");
 
+
         operationCenter.showConstellationStatus("Орбита-1");
         operationCenter.showConstellationStatus("Орбита-2");
 
