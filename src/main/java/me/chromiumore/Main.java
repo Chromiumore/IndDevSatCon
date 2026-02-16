@@ -2,7 +2,9 @@ package me.chromiumore;
 
 import me.chromiumore.repositories.ConstellationRepository;
 import me.chromiumore.services.SpaceOperationCenterService;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
 public class Main {
@@ -10,8 +12,10 @@ public class Main {
         System.out.println("ЗАПУСК СИСТЕМЫ УПРАВЛЕНИЯ СПУТНИКОВОЙ ГРУППИРОВКОЙ\n" +
                 "============================================================");
 
-        ConstellationRepository constellationRepository = new ConstellationRepository();
-        SpaceOperationCenterService operationCenter = new SpaceOperationCenterService(constellationRepository);
+        ConfigurableApplicationContext context = SpringApplication.run(Main.class, args);
+
+        ConstellationRepository constellationRepository = context.getBean(ConstellationRepository.class);
+        SpaceOperationCenterService operationCenter = context.getBean(SpaceOperationCenterService.class);
 
         System.out.println("\nСОЗДАНИЕ СПЕЦИАЛИЗИРОВАННЫХ СПУТНИКОВ:\n" +
                 "---------------------------------------------");

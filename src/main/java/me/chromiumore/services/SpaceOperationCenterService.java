@@ -46,7 +46,7 @@ public class SpaceOperationCenterService {
         System.out.println("Количество спутников: " + constellation.getSatellites().size());
 
         for (Satellite satellite : constellation.getSatellites()) {
-            System.out.println(satellite.getName() + ": " + satellite.getStatus());
+            System.out.println(satellite);
         }
     }
 }
