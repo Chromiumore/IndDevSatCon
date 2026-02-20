@@ -1,7 +1,10 @@
 package me.chromiumore;
 
+import lombok.Getter;
+
 public class SatelliteState {
     private boolean isActive = false;
+    @Getter
     private String statusMessage;
 
     public SatelliteState() {
@@ -22,10 +25,6 @@ public class SatelliteState {
     public void deactivate() {
         isActive = false;
         statusMessage = "Деактивирован";
-    }
-
-    public String getStatusMessage() {
-        return statusMessage;
     }
 
     public boolean isActive() {

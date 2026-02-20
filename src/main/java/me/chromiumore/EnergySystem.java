@@ -1,6 +1,9 @@
 package me.chromiumore;
 
+import lombok.Getter;
+
 public class EnergySystem {
+    @Getter
     private double batteryLevel;
     private static final double LOW_BATTERY_THRESHOLD = 0.2;
     private static final double MAX_BATTERY = 1.0;
@@ -8,10 +11,6 @@ public class EnergySystem {
 
     public EnergySystem(double batteryLevel) {
         this.batteryLevel = Math.min(MAX_BATTERY, Math.max(MIN_BATTERY, batteryLevel));
-    }
-
-    public double getBatteryLevel() {
-        return batteryLevel;
     }
 
     public void consume(double amount) {

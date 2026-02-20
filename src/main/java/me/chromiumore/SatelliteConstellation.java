@@ -1,8 +1,12 @@
 package me.chromiumore;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public class SatelliteConstellation {
     private String constellationName;
     private List<Satellite> satellites;
@@ -24,13 +28,5 @@ public class SatelliteConstellation {
         for (Satellite sat : satellites) {
             sat.performMission();
         }
-    }
-
-    public String getConstellationName() {
-        return constellationName;
-    }
-
-    public List<Satellite> getSatellites() {
-        return satellites;
     }
 }
