@@ -1,6 +1,10 @@
 package me.chromiumore;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public abstract class Satellite {
+    @Getter @Setter
     protected String name;
     protected SatelliteState state;
     protected EnergySystem energy;
@@ -27,10 +31,6 @@ public abstract class Satellite {
         if (state.isActive()) {
             state.deactivate();
         }
-    }
-
-    public String getName() {
-        return name;
     }
 
     public String getStatus() {
