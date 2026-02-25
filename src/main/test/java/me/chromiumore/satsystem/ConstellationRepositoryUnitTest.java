@@ -1,7 +1,7 @@
-package me.chromiumore;
+package me.chromiumore.satsystem;
 
-import me.chromiumore.model.satellite.constellite.SatelliteConstellation;
-import me.chromiumore.repository.ConstellationRepository;
+import me.chromiumore.satsystem.model.satellite.constellite.SatelliteConstellation;
+import me.chromiumore.satsystem.repository.ConstellationRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

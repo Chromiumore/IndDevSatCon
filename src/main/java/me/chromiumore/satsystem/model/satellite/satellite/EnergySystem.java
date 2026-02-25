@@ -1,4 +1,4 @@
-package me.chromiumore.model.satellite.satellite;
+package me.chromiumore.satsystem.model.satellite.satellite;
 
 import lombok.Getter;
 

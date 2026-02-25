@@ -1,7 +1,7 @@
-package me.chromiumore.model.satellite.constellite;
+package me.chromiumore.satsystem.model.satellite.constellite;
 
 import lombok.Getter;
-import me.chromiumore.model.satellite.satellite.Satellite;
+import me.chromiumore.satsystem.model.satellite.satellite.Satellite;
 
 import java.util.ArrayList;
 import java.util.List;
