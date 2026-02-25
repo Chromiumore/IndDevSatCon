@@ -1,6 +1,6 @@
 package me.chromiumore.satsystem;
 
-import me.chromiumore.satsystem.model.satellite.constellite.SatelliteConstellation;
+import me.chromiumore.satsystem.model.satellite.constellation.SatelliteConstellation;
 import me.chromiumore.satsystem.model.satellite.satellite.CommunicationSatellite;
 import me.chromiumore.satsystem.model.satellite.satellite.ImagingSatellite;
 import me.chromiumore.satsystem.model.satellite.satellite.Satellite;

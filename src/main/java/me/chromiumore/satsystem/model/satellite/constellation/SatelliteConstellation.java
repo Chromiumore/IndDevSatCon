@@ -1,4 +1,4 @@
-package me.chromiumore.satsystem.model.satellite.constellite;
+package me.chromiumore.satsystem.model.satellite.constellation;
 
 import lombok.Getter;
 import me.chromiumore.satsystem.model.satellite.satellite.Satellite;

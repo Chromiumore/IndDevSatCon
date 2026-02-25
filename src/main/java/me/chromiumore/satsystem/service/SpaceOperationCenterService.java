@@ -2,7 +2,7 @@ package me.chromiumore.satsystem.service;
 
 import me.chromiumore.satsystem.repository.ConstellationRepository;
 import me.chromiumore.satsystem.model.satellite.satellite.Satellite;
-import me.chromiumore.satsystem.model.satellite.constellite.SatelliteConstellation;
+import me.chromiumore.satsystem.model.satellite.constellation.SatelliteConstellation;
 import org.springframework.stereotype.Service;
 
 @Service
