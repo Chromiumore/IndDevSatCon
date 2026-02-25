@@ -1,7 +1,5 @@
 package me.chromiumore;
 
-import me.chromiumore.repositories.ConstellationRepository;
-import me.chromiumore.services.SpaceOperationCenterService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;

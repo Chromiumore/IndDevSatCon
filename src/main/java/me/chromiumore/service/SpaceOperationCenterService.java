@@ -1,8 +1,8 @@
-package me.chromiumore.services;
+package me.chromiumore.service;
 
-import me.chromiumore.repositories.ConstellationRepository;
-import me.chromiumore.Satellite;
-import me.chromiumore.SatelliteConstellation;
+import me.chromiumore.repository.ConstellationRepository;
+import me.chromiumore.model.satellite.satellite.Satellite;
+import me.chromiumore.model.satellite.constellite.SatelliteConstellation;
 import org.springframework.stereotype.Service;
 
 @Service

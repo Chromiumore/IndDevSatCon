@@ -1,7 +1,11 @@
 package me.chromiumore;
 
-import me.chromiumore.repositories.ConstellationRepository;
-import me.chromiumore.services.SpaceOperationCenterService;
+import me.chromiumore.model.satellite.constellite.SatelliteConstellation;
+import me.chromiumore.model.satellite.satellite.CommunicationSatellite;
+import me.chromiumore.model.satellite.satellite.ImagingSatellite;
+import me.chromiumore.model.satellite.satellite.Satellite;
+import me.chromiumore.repository.ConstellationRepository;
+import me.chromiumore.service.SpaceOperationCenterService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

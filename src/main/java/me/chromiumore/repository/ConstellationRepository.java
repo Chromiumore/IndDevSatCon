@@ -1,6 +1,6 @@
-package me.chromiumore.repositories;
+package me.chromiumore.repository;
 
-import me.chromiumore.SatelliteConstellation;
+import me.chromiumore.model.satellite.constellite.SatelliteConstellation;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;

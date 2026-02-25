@@ -1,4 +1,4 @@
-package me.chromiumore;
+package me.chromiumore.model.satellite.satellite;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +16,7 @@ public abstract class Satellite {
         System.out.println("Создан спутник: " + String.format("%s (заряд: %d%%)", name, (int) (energy.getBatteryLevel() * 100)));
     }
 
-    protected abstract void performMission();
+    public abstract void performMission();
 
     public boolean activate() {
         if (state.activate(energy.hasSufficientPower())) {
