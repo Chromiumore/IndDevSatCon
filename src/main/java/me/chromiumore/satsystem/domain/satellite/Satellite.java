@@ -1,4 +1,4 @@
-package me.chromiumore.satsystem.model.satellite;
+package me.chromiumore.satsystem.domain.satellite;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -37,5 +37,9 @@ public abstract class Satellite {
 
     public String getStatus() {
         return state.getStatusMessage();
+    }
+
+    public double getBatteryLevel() {
+        return energy.getBatteryLevel();
     }
 }

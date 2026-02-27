@@ -1,9 +1,9 @@
 package me.chromiumore.satsystem;
 
-import me.chromiumore.satsystem.model.constellation.SatelliteConstellation;
-import me.chromiumore.satsystem.model.satellite.CommunicationSatellite;
-import me.chromiumore.satsystem.model.satellite.ImagingSatellite;
-import me.chromiumore.satsystem.model.satellite.Satellite;
+import me.chromiumore.satsystem.domain.constellation.SatelliteConstellation;
+import me.chromiumore.satsystem.domain.satellite.CommunicationSatellite;
+import me.chromiumore.satsystem.domain.satellite.ImagingSatellite;
+import me.chromiumore.satsystem.domain.satellite.Satellite;
 import me.chromiumore.satsystem.repository.ConstellationRepository;
 import me.chromiumore.satsystem.service.SpaceOperationCenterService;
 import org.junit.jupiter.api.BeforeEach;

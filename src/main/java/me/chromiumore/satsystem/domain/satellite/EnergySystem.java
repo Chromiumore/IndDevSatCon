@@ -1,4 +1,4 @@
-package me.chromiumore.satsystem.model.satellite;
+package me.chromiumore.satsystem.domain.satellite;
 
 import lombok.Builder;
 import lombok.Getter;
