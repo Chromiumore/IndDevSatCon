@@ -1,6 +1,6 @@
 package me.chromiumore.satsystem;
 
-import me.chromiumore.satsystem.model.satellite.constellation.SatelliteConstellation;
+import me.chromiumore.satsystem.model.constellation.SatelliteConstellation;
 import me.chromiumore.satsystem.repository.ConstellationRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -12,7 +12,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 

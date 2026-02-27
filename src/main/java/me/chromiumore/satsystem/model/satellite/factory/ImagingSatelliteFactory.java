@@ -1,6 +1,6 @@
 package me.chromiumore.satsystem.model.satellite.factory;
 
-import me.chromiumore.satsystem.model.satellite.satellite.ImagingSatellite;
+import me.chromiumore.satsystem.model.satellite.ImagingSatellite;
 
 public class ImagingSatelliteFactory extends SatelliteFactory {
     @Override
