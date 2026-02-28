@@ -1,8 +1,12 @@
-package me.chromiumore;
+package me.chromiumore.satsystem.domain.constellation;
+
+import lombok.Getter;
+import me.chromiumore.satsystem.domain.satellite.Satellite;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public class SatelliteConstellation {
     private String constellationName;
     private List<Satellite> satellites;
@@ -15,7 +19,7 @@ public class SatelliteConstellation {
 
     public void addSatellite(Satellite satellite) {
         this.satellites.add(satellite);
-        System.out.printf("%s добавлен в группировку '%s'\n", satellite.name, constellationName);
+        System.out.printf("%s добавлен в группировку '%s'\n", satellite.getName(), constellationName);
     }
 
     public void executeAllMissions() {
@@ -24,13 +28,5 @@ public class SatelliteConstellation {
         for (Satellite sat : satellites) {
             sat.performMission();
         }
-    }
-
-    public String getConstellationName() {
-        return constellationName;
-    }
-
-    public List<Satellite> getSatellites() {
-        return satellites;
     }
 }

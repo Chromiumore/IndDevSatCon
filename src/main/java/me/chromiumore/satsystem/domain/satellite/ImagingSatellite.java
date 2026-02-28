@@ -1,21 +1,18 @@
-package me.chromiumore;
+package me.chromiumore.satsystem.domain.satellite;
 
-public class ImagingSatellite extends Satellite{
+import lombok.Getter;
+import lombok.Setter;
+
+public class ImagingSatellite extends Satellite {
+    @Getter @Setter
     private double resolution;
+    @Getter
     private int photosTaken;
 
     public ImagingSatellite(String name, double batteryLevel, double resolution) {
         super(name, batteryLevel);
         this.resolution = resolution;
         photosTaken = 0;
-    }
-
-    public double getResolution() {
-        return resolution;
-    }
-
-    public int getPhotosTaken() {
-        return photosTaken;
     }
 
     @Override

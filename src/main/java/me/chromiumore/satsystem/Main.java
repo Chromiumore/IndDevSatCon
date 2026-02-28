@@ -1,7 +1,11 @@
-package me.chromiumore;
+package me.chromiumore.satsystem;
 
-import me.chromiumore.repositories.ConstellationRepository;
-import me.chromiumore.services.SpaceOperationCenterService;
+import me.chromiumore.satsystem.domain.satellite.EnergySystem;
+import me.chromiumore.satsystem.domain.satellite.Satellite;
+import me.chromiumore.satsystem.factory.impl.CommunicationSatelliteFactory;
+import me.chromiumore.satsystem.factory.impl.ImagingSatelliteFactory;
+import me.chromiumore.satsystem.repository.ConstellationRepository;
+import me.chromiumore.satsystem.service.SpaceOperationCenterService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -16,15 +20,17 @@ public class Main {
 
         ConstellationRepository constellationRepository = context.getBean(ConstellationRepository.class);
         SpaceOperationCenterService operationCenter = context.getBean(SpaceOperationCenterService.class);
+        CommunicationSatelliteFactory communicationFactory = context.getBean(CommunicationSatelliteFactory.class);
+        ImagingSatelliteFactory imagingFactory = context.getBean(ImagingSatelliteFactory.class);
 
         System.out.println("\nСОЗДАНИЕ СПЕЦИАЛИЗИРОВАННЫХ СПУТНИКОВ:\n" +
                 "---------------------------------------------");
 
-        Satellite com1 = new CommunicationSatellite("Связь-1", 0.85, 500);
-        Satellite com2 = new CommunicationSatellite("Связь-2", 0.75, 1000);
-        Satellite img1 = new ImagingSatellite("ДЗЗ-1", 0.92, 2.5);
-        Satellite img2 = new ImagingSatellite("ДЗЗ-2", 0.45, 1);
-        Satellite img3 = new ImagingSatellite("ДЗЗ-3", 0.15, 0.5);
+        Satellite com1 = communicationFactory.createSatellite("Связь-1", 0.85);
+        Satellite com2 = communicationFactory.createSatelliteWithParameter("Связь-2", 0.75, 1000);
+        Satellite img1 = imagingFactory.createSatelliteWithParameter("ДЗЗ-1", 0.92, 2.5);
+        Satellite img2 = imagingFactory.createSatellite("ДЗЗ-2", 0.45);
+        Satellite img3 = imagingFactory.createSatelliteWithParameter("ДЗЗ-3", 0.15, 0.5);
 
         System.out.println("---------------------------------------------");
 
@@ -43,6 +49,7 @@ public class Main {
         operationCenter.addSatelliteToConstellation("Орбита-2", img3);
 
         System.out.println("-----------------------------------");
+
 
         operationCenter.showConstellationStatus("Орбита-1");
         operationCenter.showConstellationStatus("Орбита-2");

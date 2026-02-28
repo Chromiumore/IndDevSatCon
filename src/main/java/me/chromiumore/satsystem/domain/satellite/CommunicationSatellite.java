@@ -1,15 +1,15 @@
-package me.chromiumore;
+package me.chromiumore.satsystem.domain.satellite;
+
+import lombok.Getter;
+import lombok.Setter;
 
 public class CommunicationSatellite extends Satellite {
+    @Getter @Setter
     private double bandwidth;
 
     public CommunicationSatellite(String name, double batteryLevel, double bandwidth) {
         super(name, batteryLevel);
         this.bandwidth = bandwidth;
-    }
-
-    public double getBandwidth() {
-        return bandwidth;
     }
 
     @Override
