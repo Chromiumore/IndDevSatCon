@@ -3,7 +3,7 @@ package me.chromiumore.satsystem.domain.satellite;
 import lombok.Getter;
 import lombok.Setter;
 
-public class ImagingSatellite extends Satellite{
+public class ImagingSatellite extends Satellite {
     @Getter @Setter
     private double resolution;
     @Getter

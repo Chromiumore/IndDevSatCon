@@ -1,7 +1,6 @@
 package me.chromiumore.satsystem;
 
-import me.chromiumore.satsystem.domain.satellite.CommunicationSatellite;
-import me.chromiumore.satsystem.domain.satellite.ImagingSatellite;
+import me.chromiumore.satsystem.domain.satellite.EnergySystem;
 import me.chromiumore.satsystem.domain.satellite.Satellite;
 import me.chromiumore.satsystem.factory.impl.CommunicationSatelliteFactory;
 import me.chromiumore.satsystem.factory.impl.ImagingSatelliteFactory;

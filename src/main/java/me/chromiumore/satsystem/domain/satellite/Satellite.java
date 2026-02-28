@@ -2,6 +2,7 @@ package me.chromiumore.satsystem.domain.satellite;
 
 import lombok.Getter;
 import lombok.Setter;
+import me.chromiumore.satsystem.constant.EnergySystemConstants;
 
 public abstract class Satellite {
     @Getter @Setter
@@ -13,6 +14,9 @@ public abstract class Satellite {
         this.name = name;
         this.energy = EnergySystem.builder()
                 .batteryLevel(batteryLevel)
+                .minBattery(EnergySystemConstants.MIN_BATTERY)
+                .maxBattery(EnergySystemConstants.MAX_BATTERY)
+                .lowBatteryThreshold(EnergySystemConstants.LOW_BATTERY_THRESHOLD)
                 .build();
         this.state = new SatelliteState();
         System.out.println("Создан спутник: " + String.format("%s (заряд: %d%%)", name, (int) (energy.getBatteryLevel() * 100)));
@@ -37,6 +41,10 @@ public abstract class Satellite {
 
     public String getStatus() {
         return state.getStatusMessage();
+    }
+
+    public boolean isActive() {
+        return state.isActive();
     }
 
     public double getBatteryLevel() {

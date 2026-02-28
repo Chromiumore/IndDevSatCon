@@ -4,27 +4,35 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Builder
+@Getter
 public class EnergySystem {
-    @Getter
     private double batteryLevel;
-    private static final double LOW_BATTERY_THRESHOLD = 0.2;
-    private static final double MAX_BATTERY = 1.0;
-    private static final double MIN_BATTERY = 0;
+    private double lowBatteryThreshold;
+    private double maxBattery;
+    private double minBattery;
 
-    private EnergySystem(double batteryLevel) {
-        this.batteryLevel = Math.min(MAX_BATTERY, Math.max(MIN_BATTERY, batteryLevel));
+    public static EnergySystemBuilder builder() {
+        return new CustomEnergySystemBuilder();
+    }
+
+    private static class CustomEnergySystemBuilder extends EnergySystemBuilder {
+        @Override
+        public EnergySystem build() {
+            super.batteryLevel = Math.min(super.maxBattery, Math.max(super.minBattery, super.batteryLevel));
+            return super.build();
+        }
     }
 
     public void consume(double amount) {
-        if (amount <= 0 || batteryLevel <= MIN_BATTERY) {
+        if (amount <= 0 || batteryLevel <= minBattery) {
             batteryLevel -= amount;
         }
 
-        batteryLevel = Math.max(MIN_BATTERY, batteryLevel - amount);
+        batteryLevel = Math.max(minBattery, batteryLevel - amount);
     }
 
     public boolean hasSufficientPower() {
-        return batteryLevel > LOW_BATTERY_THRESHOLD;
+        return batteryLevel > lowBatteryThreshold;
     }
 
     @Override
