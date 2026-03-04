@@ -1,8 +1,10 @@
 package me.chromiumore.satsystem.factory;
 
 import me.chromiumore.satsystem.domain.satellite.Satellite;
+import me.chromiumore.satsystem.service.satellite.param.SatelliteParam;
+import me.chromiumore.satsystem.service.satellite.param.SatelliteType;
 
 public interface SatelliteFactory {
-    Satellite createSatellite(String name, double batteryLevel);
-    Satellite createSatelliteWithParameter(String name, double batteryLevel, double parameter);
+    Satellite createSatelliteWithParameter(SatelliteParam param);
+    boolean isSatelliteTypeSupported(SatelliteType type);
 }
