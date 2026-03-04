@@ -6,10 +6,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public abstract class SatelliteParam {
     protected SatelliteType type;
     protected String name;
     protected double batteryLevel;
+
+    public SatelliteParam(SatelliteType type, String name, double batteryLevel) {
+        this.type = type;
+        this.name = name;
+        this.batteryLevel = batteryLevel;
+    }
 }

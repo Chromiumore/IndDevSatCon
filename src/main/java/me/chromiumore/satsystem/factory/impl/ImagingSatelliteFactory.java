@@ -17,7 +17,7 @@ public class ImagingSatelliteFactory implements SatelliteFactory {
 
 
     @Override
-    public Satellite createSatelliteWithParameter(SatelliteParam param) {
+    public Satellite createSatelliteWithParameter(SatelliteParam param) throws SpaceOperationException {
         if (param instanceof ImagingSatelliteParam imagingParam) {
             return new ImagingSatellite(
                     imagingParam.getName(),

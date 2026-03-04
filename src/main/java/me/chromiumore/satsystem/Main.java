@@ -6,6 +6,10 @@ import me.chromiumore.satsystem.factory.impl.CommunicationSatelliteFactory;
 import me.chromiumore.satsystem.factory.impl.ImagingSatelliteFactory;
 import me.chromiumore.satsystem.repository.ConstellationRepository;
 import me.chromiumore.satsystem.service.SpaceOperationCenterService;
+import me.chromiumore.satsystem.service.satellite.impl.SatelliteService;
+import me.chromiumore.satsystem.service.satellite.param.SatelliteType;
+import me.chromiumore.satsystem.service.satellite.param.impl.CommunicationSatelliteParam;
+import me.chromiumore.satsystem.service.satellite.param.impl.ImagingSatelliteParam;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -20,17 +24,49 @@ public class Main {
 
         ConstellationRepository constellationRepository = context.getBean(ConstellationRepository.class);
         SpaceOperationCenterService operationCenter = context.getBean(SpaceOperationCenterService.class);
-        CommunicationSatelliteFactory communicationFactory = context.getBean(CommunicationSatelliteFactory.class);
-        ImagingSatelliteFactory imagingFactory = context.getBean(ImagingSatelliteFactory.class);
+        SatelliteService satelliteService = context.getBean(SatelliteService.class);
 
         System.out.println("\nСОЗДАНИЕ СПЕЦИАЛИЗИРОВАННЫХ СПУТНИКОВ:\n" +
                 "---------------------------------------------");
 
-        Satellite com1 = communicationFactory.createSatellite("Связь-1", 0.85);
-        Satellite com2 = communicationFactory.createSatelliteWithParameter("Связь-2", 0.75, 1000);
-        Satellite img1 = imagingFactory.createSatelliteWithParameter("ДЗЗ-1", 0.92, 2.5);
-        Satellite img2 = imagingFactory.createSatellite("ДЗЗ-2", 0.45);
-        Satellite img3 = imagingFactory.createSatelliteWithParameter("ДЗЗ-3", 0.15, 0.5);
+        Satellite com1 = satelliteService.createSatellite(
+                new CommunicationSatelliteParam(
+                        SatelliteType.COMMUNICATION,
+                        "Связь-1",
+                        0.85,
+                        500)
+        );
+        Satellite com2 = satelliteService.createSatellite(
+                new CommunicationSatelliteParam(
+                        SatelliteType.COMMUNICATION,
+                        "Связь-2",
+                        0.75,
+                        1000
+                )
+        );
+        Satellite img1 = satelliteService.createSatellite(
+                new ImagingSatelliteParam(
+                        SatelliteType.IMAGE,
+                        "ДЗЗ-1",
+                        0.92,
+                        2.5)
+        );
+        Satellite img2 = satelliteService.createSatellite(
+                new ImagingSatelliteParam(
+                        SatelliteType.IMAGE,
+                        "ДЗЗ-2",
+                        0.45,
+                        1
+                )
+        );
+        Satellite img3 = satelliteService.createSatellite(
+                new ImagingSatelliteParam(
+                        SatelliteType.IMAGE,
+                        "ДЗЗ-3",
+                        0.15,
+                        0.5
+                )
+        );
 
         System.out.println("---------------------------------------------");
 
