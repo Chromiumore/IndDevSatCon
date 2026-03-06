@@ -4,9 +4,9 @@ import me.chromiumore.satsystem.domain.satellite.ImagingSatellite;
 import me.chromiumore.satsystem.domain.satellite.Satellite;
 import me.chromiumore.satsystem.exception.SpaceOperationException;
 import me.chromiumore.satsystem.factory.SatelliteFactory;
-import me.chromiumore.satsystem.param.satellite.SatelliteParam;
-import me.chromiumore.satsystem.param.satellite.SatelliteType;
-import me.chromiumore.satsystem.param.satellite.impl.ImagingSatelliteParam;
+import me.chromiumore.satsystem.domain.satellite.param.SatelliteParam;
+import me.chromiumore.satsystem.domain.satellite.param.SatelliteType;
+import me.chromiumore.satsystem.domain.satellite.param.impl.ImagingSatelliteParam;
 import org.springframework.stereotype.Component;
 
 @Component

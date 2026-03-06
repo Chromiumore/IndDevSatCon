@@ -1,9 +1,9 @@
-package me.chromiumore.satsystem.param.satellite.impl;
+package me.chromiumore.satsystem.domain.satellite.param.impl;
 
 import lombok.Getter;
 import lombok.Setter;
-import me.chromiumore.satsystem.param.satellite.SatelliteParam;
-import me.chromiumore.satsystem.param.satellite.SatelliteType;
+import me.chromiumore.satsystem.domain.satellite.param.SatelliteParam;
+import me.chromiumore.satsystem.domain.satellite.param.SatelliteType;
 
 @Getter
 @Setter

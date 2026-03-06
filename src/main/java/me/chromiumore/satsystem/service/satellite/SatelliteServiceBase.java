@@ -1,7 +1,7 @@
 package me.chromiumore.satsystem.service.satellite;
 
 import me.chromiumore.satsystem.domain.satellite.Satellite;
-import me.chromiumore.satsystem.param.satellite.SatelliteParam;
+import me.chromiumore.satsystem.domain.satellite.param.SatelliteParam;
 
 public interface SatelliteServiceBase {
     Satellite createSatellite(SatelliteParam param);
