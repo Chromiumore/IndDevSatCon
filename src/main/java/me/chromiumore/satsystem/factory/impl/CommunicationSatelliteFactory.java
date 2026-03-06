@@ -28,6 +28,6 @@ public class CommunicationSatelliteFactory implements SatelliteFactory {
 
     @Override
     public boolean isSatelliteTypeSupported(SatelliteType type) {
-        return type == SatelliteType.COMMUNICATION;
+        return SatelliteType.COMMUNICATION.equals(type);
     }
 }

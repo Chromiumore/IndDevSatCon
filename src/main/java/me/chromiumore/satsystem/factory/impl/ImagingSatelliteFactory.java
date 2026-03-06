@@ -28,6 +28,6 @@ public class ImagingSatelliteFactory implements SatelliteFactory {
 
     @Override
     public boolean isSatelliteTypeSupported(SatelliteType type) {
-        return type == SatelliteType.IMAGE;
+        return SatelliteType.IMAGE.equals(type);
     }
 }
