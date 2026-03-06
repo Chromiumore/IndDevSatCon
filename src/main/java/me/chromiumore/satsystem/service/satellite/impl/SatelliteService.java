@@ -5,7 +5,7 @@ import me.chromiumore.satsystem.domain.satellite.Satellite;
 import me.chromiumore.satsystem.exception.SpaceOperationException;
 import me.chromiumore.satsystem.factory.SatelliteFactory;
 import me.chromiumore.satsystem.service.satellite.SatelliteServiceBase;
-import me.chromiumore.satsystem.service.satellite.param.SatelliteParam;
+import me.chromiumore.satsystem.param.satellite.SatelliteParam;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,15 +1,12 @@
 package me.chromiumore.satsystem;
 
-import me.chromiumore.satsystem.domain.satellite.EnergySystem;
 import me.chromiumore.satsystem.domain.satellite.Satellite;
-import me.chromiumore.satsystem.factory.impl.CommunicationSatelliteFactory;
-import me.chromiumore.satsystem.factory.impl.ImagingSatelliteFactory;
 import me.chromiumore.satsystem.repository.ConstellationRepository;
 import me.chromiumore.satsystem.service.SpaceOperationCenterService;
 import me.chromiumore.satsystem.service.satellite.impl.SatelliteService;
-import me.chromiumore.satsystem.service.satellite.param.SatelliteType;
-import me.chromiumore.satsystem.service.satellite.param.impl.CommunicationSatelliteParam;
-import me.chromiumore.satsystem.service.satellite.param.impl.ImagingSatelliteParam;
+import me.chromiumore.satsystem.param.satellite.SatelliteType;
+import me.chromiumore.satsystem.param.satellite.impl.CommunicationSatelliteParam;
+import me.chromiumore.satsystem.param.satellite.impl.ImagingSatelliteParam;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;

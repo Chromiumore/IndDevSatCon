@@ -1,4 +1,4 @@
-package me.chromiumore.satsystem.service.satellite.param;
+package me.chromiumore.satsystem.param.satellite;
 
 public enum SatelliteType {
     IMAGE,
