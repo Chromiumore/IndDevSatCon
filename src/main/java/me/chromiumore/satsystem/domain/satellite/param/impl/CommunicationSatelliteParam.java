@@ -10,8 +10,8 @@ import me.chromiumore.satsystem.domain.satellite.param.SatelliteType;
 public class CommunicationSatelliteParam extends SatelliteParam {
     private double bandwidth;
 
-    public CommunicationSatelliteParam(SatelliteType type, String name, double batteryLevel, double bandwidth) {
-        super(type, name, batteryLevel);
+    public CommunicationSatelliteParam(String name, double batteryLevel, double bandwidth) {
+        super(SatelliteType.COMMUNICATION, name, batteryLevel);
         this.bandwidth = bandwidth;
     }
 }

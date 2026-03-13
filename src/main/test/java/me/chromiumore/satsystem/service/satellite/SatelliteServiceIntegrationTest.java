@@ -24,7 +24,6 @@ public class SatelliteServiceIntegrationTest {
     @DisplayName("Создание коммуникационных спутников")
     void createCommunicationSatellites() {
         CommunicationSatelliteParam param = new CommunicationSatelliteParam(
-                SatelliteType.COMMUNICATION,
                 "com-1",
                 0.6,
                 750
@@ -44,7 +43,6 @@ public class SatelliteServiceIntegrationTest {
     @DisplayName("Создание спутников снимков")
     void createImagingSatellites() {
         ImagingSatelliteParam param = new ImagingSatelliteParam(
-                SatelliteType.IMAGE,
                 "img-1",
                 0.5,
                 2

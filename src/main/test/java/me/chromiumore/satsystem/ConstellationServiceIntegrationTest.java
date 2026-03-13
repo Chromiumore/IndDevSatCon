@@ -5,7 +5,7 @@ import me.chromiumore.satsystem.domain.satellite.CommunicationSatellite;
 import me.chromiumore.satsystem.domain.satellite.ImagingSatellite;
 import me.chromiumore.satsystem.domain.satellite.Satellite;
 import me.chromiumore.satsystem.repository.ConstellationRepository;
-import me.chromiumore.satsystem.service.SpaceOperationCenterService;
+import me.chromiumore.satsystem.service.ConstellationService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,15 +15,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-@DisplayName("Тест космического центра")
-public class OperationServiceIntegrationTest {
+@DisplayName("Тест сервиса группировок")
+public class ConstellationServiceIntegrationTest {
     private static final String CONSTELLATION_1 = "test1";
     private static final String CONSTELLATION_2 = "test2";
 
     @Autowired
     ConstellationRepository repository;
     @Autowired
-    SpaceOperationCenterService operationCenter;
+    ConstellationService operationCenter;
 
     @BeforeEach
     void setup() {

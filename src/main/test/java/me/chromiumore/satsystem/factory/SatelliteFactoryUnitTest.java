@@ -34,7 +34,6 @@ public class SatelliteFactoryUnitTest {
 
         Satellite satellite = communicationFactory.createSatelliteWithParameter(
                 new CommunicationSatelliteParam(
-                        SatelliteType.COMMUNICATION,
                         name,
                         batteryLevel,
                         bandwidth
@@ -59,7 +58,6 @@ public class SatelliteFactoryUnitTest {
 
         Satellite satellite = imagingFactory.createSatelliteWithParameter(
                 new ImagingSatelliteParam(
-                        SatelliteType.IMAGE,
                         name,
                         batteryLevel,
                         resolution
@@ -80,7 +78,6 @@ public class SatelliteFactoryUnitTest {
     void factoryCreatedSatellitesCanBeActivated() {
         Satellite comSat = communicationFactory.createSatelliteWithParameter(
                 new CommunicationSatelliteParam(
-                        SatelliteType.COMMUNICATION,
                         "com-1",
                         0.7,
                         500
@@ -88,7 +85,6 @@ public class SatelliteFactoryUnitTest {
         );
         Satellite imgSat = imagingFactory.createSatelliteWithParameter(
                 new ImagingSatelliteParam(
-                        SatelliteType.IMAGE,
                         "img-1",
                         0.21,
                         1
@@ -109,7 +105,6 @@ public class SatelliteFactoryUnitTest {
     void factoryCreatedSatellitesCannotBeActivated() {
         Satellite comSat = communicationFactory.createSatelliteWithParameter(
                 new CommunicationSatelliteParam(
-                        SatelliteType.COMMUNICATION,
                         "com-1",
                         0,
                         500
@@ -117,7 +112,6 @@ public class SatelliteFactoryUnitTest {
         );
         Satellite imgSat = imagingFactory.createSatelliteWithParameter(
                 new ImagingSatelliteParam(
-                        SatelliteType.IMAGE,
                         "img-1",
                         0.2,
                         1

@@ -10,8 +10,8 @@ import me.chromiumore.satsystem.domain.satellite.param.SatelliteType;
 public class ImagingSatelliteParam extends SatelliteParam {
     private double resolution;
 
-    public ImagingSatelliteParam(SatelliteType type, String name, double batteryLevel, double resolution) {
-        super(type, name, batteryLevel);
+    public ImagingSatelliteParam(String name, double batteryLevel, double resolution) {
+        super(SatelliteType.IMAGE, name, batteryLevel);
         this.resolution = resolution;
     }
 }
