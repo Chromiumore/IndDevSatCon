@@ -1,5 +1,6 @@
 package me.chromiumore.satsystem.service;
 
+import me.chromiumore.satsystem.aop.LogExecutionTime;
 import me.chromiumore.satsystem.repository.ConstellationRepository;
 import me.chromiumore.satsystem.domain.satellite.Satellite;
 import me.chromiumore.satsystem.domain.constellation.SatelliteConstellation;

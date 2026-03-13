@@ -1,6 +1,7 @@
 package me.chromiumore.satsystem.service;
 
 import lombok.RequiredArgsConstructor;
+import me.chromiumore.satsystem.aop.LogExecutionTime;
 import me.chromiumore.satsystem.domain.constellation.SatelliteConstellation;
 import me.chromiumore.satsystem.domain.request.AddSatelliteRequest;
 import me.chromiumore.satsystem.domain.request.StatusRequest;
@@ -18,6 +19,7 @@ public class SpaceOperationCenterService {
     private final ConstellationService constellationService;
     private final SatelliteService satelliteService;
 
+    @LogExecutionTime
     public void addSatellite(AddSatelliteRequest request) {
         try {
             constellationService.showConstellationStatus(request.constellationName());
