@@ -4,6 +4,7 @@ import me.chromiumore.satsystem.domain.constellation.SatelliteConstellation;
 import me.chromiumore.satsystem.domain.request.AddSatelliteRequest;
 import me.chromiumore.satsystem.domain.request.MissionRequest;
 import me.chromiumore.satsystem.domain.request.MissionTargetType;
+import me.chromiumore.satsystem.domain.request.StatusRequest;
 import me.chromiumore.satsystem.domain.satellite.Satellite;
 import me.chromiumore.satsystem.domain.satellite.param.impl.CommunicationSatelliteParam;
 import me.chromiumore.satsystem.domain.satellite.param.impl.ImagingSatelliteParam;
@@ -91,9 +92,43 @@ public class SpaceOperationServiceIntegrationTest {
         spaceOperationCenterService.addSatellite(addRequest);
 
         String overview = spaceOperationCenterService.getSystemOverview();
+        System.out.println(overview);
 
         assertTrue(overview.contains(constellationName));
         assertTrue(overview.contains(satName));
         assertTrue(overview.contains("заряд: 70%") || overview.contains("заряд: 70"));
     }
+
+    @Test
+    @DisplayName("Получение статуса спутника")
+    void getSatelliteStatus() {
+        String constellationName = "StatusConst";
+        String satName = "StatusSat";
+
+        CommunicationSatelliteParam comParam = new CommunicationSatelliteParam(satName, 0.7, 500);
+        StatusRequest statusRequest = new StatusRequest(
+                constellationName,
+                satName
+        );
+        AddSatelliteRequest addRequest = new AddSatelliteRequest(
+                constellationName,
+                List.of(comParam)
+        );
+
+        spaceOperationCenterService.addSatellite(addRequest);
+
+        String statusMessage = spaceOperationCenterService.getSatelliteStatus(statusRequest);
+        assertEquals("Не активирован", statusMessage); // Захардкодил фуу!!!
+
+        MissionRequest missionRequest = new MissionRequest(
+                MissionTargetType.CONSTELLATION,
+                constellationName,
+                null
+        );
+        spaceOperationCenterService.executeMission(missionRequest);
+
+        statusMessage = spaceOperationCenterService.getSatelliteStatus(statusRequest);
+        assertEquals("Активен", statusMessage);
+    }
+
 }

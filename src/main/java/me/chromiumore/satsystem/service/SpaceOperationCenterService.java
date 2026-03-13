@@ -3,6 +3,7 @@ package me.chromiumore.satsystem.service;
 import lombok.RequiredArgsConstructor;
 import me.chromiumore.satsystem.domain.constellation.SatelliteConstellation;
 import me.chromiumore.satsystem.domain.request.AddSatelliteRequest;
+import me.chromiumore.satsystem.domain.request.StatusRequest;
 import me.chromiumore.satsystem.domain.request.MissionRequest;
 import me.chromiumore.satsystem.domain.satellite.Satellite;
 import me.chromiumore.satsystem.domain.satellite.param.SatelliteParam;
@@ -63,5 +64,15 @@ public class SpaceOperationCenterService {
         });
 
         return sb.toString();
+    }
+
+    public String getSatelliteStatus(StatusRequest request) {
+        SatelliteConstellation constellation = constellationService.getConstellation(request.constellationName());
+        Satellite satellite = constellation.getSatellites().stream()
+                .filter(s -> s.getName().equals(request.satelliteName()))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Спутник не найден: " + request.satelliteName()));
+
+        return satellite.getStatus();
     }
 }
