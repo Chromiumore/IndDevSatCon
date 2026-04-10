@@ -14,4 +14,8 @@ public class CommunicationSatelliteParam extends SatelliteParam {
         super(SatelliteType.COMMUNICATION, name, batteryLevel);
         this.bandwidth = bandwidth;
     }
+
+    public CommunicationSatelliteParam() {
+        super(SatelliteType.COMMUNICATION, "", 0.0);
+    }
 }

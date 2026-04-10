@@ -33,6 +33,13 @@ public class SpaceOperationCenterService {
         }
     }
 
+    public void removeSatelliteFromConstellation(
+            String constellationName,
+            String satelliteName
+    ) {
+        constellationService.removeSatelliteFromConstellation(constellationName, satelliteName);
+    }
+
     public void executeMission(MissionRequest request) {
         switch (request.targetType()) {
             case CONSTELLATION -> {

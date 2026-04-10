@@ -14,4 +14,8 @@ public class ImagingSatelliteParam extends SatelliteParam {
         super(SatelliteType.IMAGE, name, batteryLevel);
         this.resolution = resolution;
     }
+
+    public ImagingSatelliteParam() {
+        super(SatelliteType.IMAGE, null, 0.0);
+    }
 }

@@ -22,11 +22,23 @@ public class SatelliteConstellation {
         System.out.printf("%s добавлен в группировку '%s'\n", satellite.getName(), constellationName);
     }
 
+    public Satellite getByName(String satelliteName) {
+        return satellites.stream()
+                .filter(sat -> satelliteName.equals(sat.getName()))
+                .findFirst()
+                .orElse(null);
+    }
+
     public void executeAllMissions() {
         System.out.println("ВЫПОЛНЕНИЕ МИССИЙ ГРУППИРОВКИ " + constellationName + "\n" +
                 "==================================================");
         for (Satellite sat : satellites) {
             sat.performMission();
         }
+    }
+
+    public void removeSatellite(String satelliteName) {
+        Satellite satellite = getByName(satelliteName);
+        satellites.remove(satellite);
     }
 }

@@ -1,6 +1,5 @@
 package me.chromiumore.satsystem.service;
 
-import me.chromiumore.satsystem.aop.LogExecutionTime;
 import me.chromiumore.satsystem.repository.ConstellationRepository;
 import me.chromiumore.satsystem.domain.satellite.Satellite;
 import me.chromiumore.satsystem.domain.constellation.SatelliteConstellation;
@@ -34,6 +33,11 @@ public class ConstellationService {
 
     public Map<String, SatelliteConstellation> getAllConstellations() {
         return repository.getAll();
+    }
+
+    public void removeSatelliteFromConstellation(String constellationName, String satelliteName) {
+        SatelliteConstellation constellation = repository.get(constellationName);
+        constellation.removeSatellite(satelliteName);
     }
 
     public void executeConstellationMission(String constellationName) {
