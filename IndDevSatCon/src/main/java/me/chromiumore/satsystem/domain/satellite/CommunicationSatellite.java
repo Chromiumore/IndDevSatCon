@@ -1,8 +1,14 @@
 package me.chromiumore.satsystem.domain.satellite;
 
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Entity
+@DiscriminatorValue("COMMUNICATION")
+@NoArgsConstructor
 public class CommunicationSatellite extends Satellite {
     @Getter @Setter
     private double bandwidth;

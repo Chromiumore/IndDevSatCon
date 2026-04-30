@@ -1,7 +1,9 @@
 package me.chromiumore.satsystem.domain.satellite;
 
+import jakarta.persistence.Embeddable;
 import lombok.Getter;
 
+@Embeddable
 public class SatelliteState {
     private boolean isActive = false;
     @Getter

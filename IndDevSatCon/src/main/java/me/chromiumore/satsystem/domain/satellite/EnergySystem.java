@@ -1,14 +1,26 @@
 package me.chromiumore.satsystem.domain.satellite;
 
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@Entity
+@Table(name = "energy_system")
 @Builder
 @Getter
 public class EnergySystem {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "battery_level", nullable = false)
     private double batteryLevel;
+    @Column(name = "low_battery_threshold", nullable = false)
     private double lowBatteryThreshold;
+    @Column(name = "max_battery", nullable = false)
     private double maxBattery;
+    @Column(name = "min_battery", nullable = false)
     private double minBattery;
 
     public static EnergySystemBuilder builder() {

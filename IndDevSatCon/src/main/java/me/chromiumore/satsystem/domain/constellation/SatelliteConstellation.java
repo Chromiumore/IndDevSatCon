@@ -1,19 +1,32 @@
 package me.chromiumore.satsystem.domain.constellation;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import me.chromiumore.satsystem.domain.satellite.Satellite;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "satellite_constellation")
 @Getter
+@NoArgsConstructor
 public class SatelliteConstellation {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "name", nullable = false, unique = true)
     private String constellationName;
-    private List<Satellite> satellites;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "constellation", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private List<Satellite> satellites = new ArrayList<>();
 
     public SatelliteConstellation(String constellationName) {
         this.constellationName = constellationName;
-        this.satellites = new ArrayList<>();
         System.out.printf("Создана спутниковая группировка: %s\n", constellationName);
     }
 
