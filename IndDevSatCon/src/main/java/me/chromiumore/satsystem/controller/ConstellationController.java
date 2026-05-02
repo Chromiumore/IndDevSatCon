@@ -36,7 +36,7 @@ public class ConstellationController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{constellationName}")
     public SatelliteConstellation getConstellationByName(@PathVariable String constellationName) {
         return constellationService.getConstellationByName(constellationName);
     }

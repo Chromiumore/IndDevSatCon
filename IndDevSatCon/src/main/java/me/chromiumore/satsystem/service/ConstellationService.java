@@ -24,7 +24,7 @@ public class ConstellationService {
 
     public SatelliteConstellation createAndSaveConstellation(String name) {
         SatelliteConstellation constellation = new SatelliteConstellation(name);
-        constellationRepository.save(constellation);
+        return constellationRepository.save(constellation);
     }
 
     public void addSatelliteToConstellation(Long constellationId, Long satelliteId) {

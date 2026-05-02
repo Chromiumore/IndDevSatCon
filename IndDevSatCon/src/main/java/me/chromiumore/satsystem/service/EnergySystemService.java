@@ -4,11 +4,13 @@ import lombok.AllArgsConstructor;
 import me.chromiumore.satsystem.domain.request.EnergySystemUpdateRequest;
 import me.chromiumore.satsystem.domain.satellite.EnergySystem;
 import me.chromiumore.satsystem.repository.EnergySystemRepository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 @AllArgsConstructor
 public class EnergySystemService {
     private final EnergySystemRepository energySystemRepository;

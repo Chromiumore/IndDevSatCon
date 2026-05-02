@@ -4,6 +4,10 @@ services:
         container_name: server
         environment:
             - SERVER_PORT=8080
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/satellite_db
+            - SPRING_DATASOURCE_USERNAME=postgres
+            - SPRING_DATASOURCE_PASSWORD=postgres
+            - SPRING_JPA_HIBERNATE_DDL_AUTO=update
         ports:
             - "8080:8080"
         networks:
@@ -28,7 +32,30 @@ services:
             - "8081:8081"
         networks:
             - space-net
+    
+    db:
+        image: postgres:16-alpine
+        container_name: postgres-db
+        environment:
+            - POSTGRES_DB=satellite_db
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+        ports:
+            - "5432:5432"
+        networks:
+            - space-net
+        volumes:
+            - pgdata:/var/lib/postgresql/data
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready -U postgres -d satellite_db"]
+            interval: 10s
+            timeout: 5s
+            retries: 5
+            start_period: 30s
             
 networks:
     space-net:
         driver: bridge
+        
+volumes:
+    pgdata:
