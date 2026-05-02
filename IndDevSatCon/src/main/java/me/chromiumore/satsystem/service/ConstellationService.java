@@ -54,6 +54,13 @@ public class ConstellationService {
         return constellationRepository.findAll();
     }
 
+    public void deleteConstellation(Long id) {
+        if (!constellationRepository.existsById(id)) {
+            throw new RuntimeException("Группирока не найдена: " + id);
+        }
+        constellationRepository.deleteById(id);
+    }
+
     public void removeSatelliteFromConstellation(String constellationName, String satelliteName) {
         SatelliteConstellation constellation = getConstellationByName(constellationName);
         Satellite satellite = constellation.getSatellites().stream()

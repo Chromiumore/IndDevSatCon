@@ -31,8 +31,8 @@ public class ConstellationController {
     @PostMapping("/{id}")
     public ResponseEntity<Void> addSatelliteToConstellation(
             @PathVariable Long constellationId,
-            @PathVariable Long satelliteId) {
-        constellationService.addSatelliteToConstellation(constellationId, satelliteId);
+            @PathVariable AddSatelliteRequest satelliteRequest) {
+        constellationService.addSatelliteToConstellation(constellationId, satelliteRequest.satelliteId);
         return ResponseEntity.ok().build();
     }
 
@@ -51,5 +51,11 @@ public class ConstellationController {
     @GetMapping
     public List<SatelliteConstellation> getAllConstellations() {
         return constellationService.getAllConstellations();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteConstellation(@PathVariable Long id) {
+        constellationService.deleteConstellation(id);
+        return ResponseEntity.noContent().build();
     }
 }

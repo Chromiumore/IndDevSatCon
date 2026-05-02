@@ -4,11 +4,12 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "energy_system")
 @Builder
-@Getter
+@Getter @Setter
 public class EnergySystem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
