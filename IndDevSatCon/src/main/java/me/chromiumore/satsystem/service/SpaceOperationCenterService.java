@@ -8,9 +8,9 @@ import me.chromiumore.satsystem.domain.request.StatusRequest;
 import me.chromiumore.satsystem.domain.request.MissionRequest;
 import me.chromiumore.satsystem.domain.satellite.Satellite;
 import me.chromiumore.satsystem.domain.satellite.param.SatelliteParam;
-import me.chromiumore.satsystem.service.satellite.impl.SatelliteService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 @RequiredArgsConstructor
@@ -27,9 +27,12 @@ public class SpaceOperationCenterService {
             constellationService.createAndSaveConstellation(request.constellationName());
         }
 
+        SatelliteConstellation constellation = constellationService.getConstellationByName(
+                request.constellationName());
+
         for (SatelliteParam param : request.satelliteParams()) {
-            Satellite satellite = satelliteService.createSatellite(param);
-            constellationService.addSatelliteToConstellation(request.constellationName(), satellite);
+            Satellite satellite = satelliteService.createAndSaveSatellite(param);
+            constellationService.addSatelliteToConstellation(constellation.getId(), satellite.getId());
         }
     }
 
@@ -47,7 +50,7 @@ public class SpaceOperationCenterService {
                 constellationService.executeConstellationMission(request.constellationName());
             }
             case SINGLE_SATELLITE -> {
-                SatelliteConstellation constellation = constellationService.getConstellation(request.constellationName());
+                SatelliteConstellation constellation = constellationService.getConstellationByName(request.constellationName());
                 var satellite = constellation.getSatellites().stream()
                         .filter(s -> s.getName().equals(request.satelliteName()))
                         .findFirst()
@@ -59,10 +62,10 @@ public class SpaceOperationCenterService {
     }
 
     public String getSystemOverview() {
-        Map<String, SatelliteConstellation> allConstellation = constellationService.getAllConstellations();
+        List<SatelliteConstellation> allConstellation = constellationService.getAllConstellations();
         StringBuilder sb = new StringBuilder("=== Системная сводка ===\n");
         sb.append("Всего группировок: ").append(allConstellation.size()).append("\n");
-        allConstellation.values().forEach(cons -> {
+        allConstellation.forEach(cons -> {
             sb.append("Группировка '").append(cons.getConstellationName())
                     .append("' : спутников ").append(cons.getSatellites().size()).append("\n");
             cons.getSatellites().forEach(sat -> {
@@ -76,7 +79,7 @@ public class SpaceOperationCenterService {
     }
 
     public String getSatelliteStatus(StatusRequest request) {
-        SatelliteConstellation constellation = constellationService.getConstellation(request.constellationName());
+        SatelliteConstellation constellation = constellationService.getConstellationByName(request.constellationName());
         Satellite satellite = constellation.getSatellites().stream()
                 .filter(s -> s.getName().equals(request.satelliteName()))
                 .findFirst()

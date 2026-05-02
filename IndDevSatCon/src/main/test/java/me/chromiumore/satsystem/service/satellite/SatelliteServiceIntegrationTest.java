@@ -3,8 +3,7 @@ package me.chromiumore.satsystem.service.satellite;
 import me.chromiumore.satsystem.domain.satellite.CommunicationSatellite;
 import me.chromiumore.satsystem.domain.satellite.ImagingSatellite;
 import me.chromiumore.satsystem.domain.satellite.Satellite;
-import me.chromiumore.satsystem.service.satellite.impl.SatelliteService;
-import me.chromiumore.satsystem.domain.satellite.param.SatelliteType;
+import me.chromiumore.satsystem.service.SatelliteService;
 import me.chromiumore.satsystem.domain.satellite.param.impl.CommunicationSatelliteParam;
 import me.chromiumore.satsystem.domain.satellite.param.impl.ImagingSatelliteParam;
 import org.junit.jupiter.api.DisplayName;
@@ -28,7 +27,7 @@ public class SatelliteServiceIntegrationTest {
                 0.6,
                 750
         );
-        Satellite sat = service.createSatellite(param);
+        Satellite sat = service.createAndSaveSatellite(param);
 
         assertEquals(param.getName(), sat.getName());
         assertEquals(param.getBatteryLevel(), sat.getBatteryLevel());
@@ -47,7 +46,7 @@ public class SatelliteServiceIntegrationTest {
                 0.5,
                 2
         );
-        Satellite sat = service.createSatellite(param);
+        Satellite sat = service.createAndSaveSatellite(param);
 
         assertEquals(param.getName(), sat.getName());
         assertEquals(param.getBatteryLevel(), sat.getBatteryLevel());
