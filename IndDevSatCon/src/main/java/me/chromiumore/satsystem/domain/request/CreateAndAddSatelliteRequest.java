@@ -4,5 +4,5 @@ import me.chromiumore.satsystem.domain.satellite.param.SatelliteParam;
 
 import java.util.List;
 
-public record AddSatelliteRequest(String constellationName, List<SatelliteParam> satelliteParams) {
+public record CreateAndAddSatelliteRequest(String constellationName, List<SatelliteParam> satelliteParams) {
 }

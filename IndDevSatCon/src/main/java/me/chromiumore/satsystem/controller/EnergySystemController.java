@@ -21,16 +21,16 @@ public class EnergySystemController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<EnergySystem> getEnergySystemById(@PathVariable Long id) {
+    public ResponseEntity<EnergySystem> getEnergySystemById(@PathVariable("id") Long id) {
         return energySystemService.getEnergySystemById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping("/{id}")
-    public ResponseEntity<EnergySystem> updateEnergySystem(@PathVariable Long id,
+    public ResponseEntity<EnergySystem> updateEnergySystem(@PathVariable("id") Long id,
                                                            @RequestBody EnergySystemUpdateRequest request) {
-        EnergySystem updated =energySystemService.updateEnergySystem(id, request);
+        EnergySystem updated = energySystemService.updateEnergySystem(id, request);
         return ResponseEntity.ok(updated);
     }
 }

@@ -28,21 +28,21 @@ public class ConstellationController {
         return ResponseEntity.status(HttpStatus.CREATED).body(constellation);
     }
 
-    @PostMapping("/{id}")
+    @PostMapping("/{constellationId}")
     public ResponseEntity<Void> addSatelliteToConstellation(
-            @PathVariable Long constellationId,
-            @PathVariable AddSatelliteRequest satelliteRequest) {
+            @PathVariable("constellationId") Long constellationId,
+            @RequestBody AddSatelliteRequest satelliteRequest) {
         constellationService.addSatelliteToConstellation(constellationId, satelliteRequest.satelliteId);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/{constellationName}")
-    public SatelliteConstellation getConstellationByName(@PathVariable String constellationName) {
+    @GetMapping("/name/{constellationName}")
+    public SatelliteConstellation getConstellationByName(@PathVariable("constellationName") String constellationName) {
         return constellationService.getConstellationByName(constellationName);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<SatelliteConstellation> getConstellationById(@PathVariable Long id) {
+    public ResponseEntity<SatelliteConstellation> getConstellationById(@PathVariable("id") Long id) {
         return constellationService.getConstellationById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -54,7 +54,7 @@ public class ConstellationController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteConstellation(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteConstellation(@PathVariable("id") Long id) {
         constellationService.deleteConstellation(id);
         return ResponseEntity.noContent().build();
     }

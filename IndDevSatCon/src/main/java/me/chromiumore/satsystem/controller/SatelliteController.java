@@ -28,20 +28,20 @@ public class SatelliteController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Satellite> getSatelliteById(@PathVariable Long id) {
+    public ResponseEntity<Satellite> getSatelliteById(@PathVariable("id") Long id) {
         return satelliteService.getSatelliteById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Satellite> updatedSatellite(@PathVariable Long id, @RequestBody Satellite satellite) {
+    public ResponseEntity<Satellite> updatedSatellite(@PathVariable("id") Long id, @RequestBody Satellite satellite) {
         Satellite updated = satelliteService.updateSatellite(id, satellite);
         return ResponseEntity.ok(updated);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteSatellite(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteSatellite(@PathVariable("id") Long id) {
         satelliteService.deleteSatellite(id);
         return ResponseEntity.noContent().build();
     }

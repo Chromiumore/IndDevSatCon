@@ -1,14 +1,13 @@
 package me.chromiumore.satsystem.domain.satellite;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "energy_system")
 @Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Getter @Setter
 public class EnergySystem {
     @Id

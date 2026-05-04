@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import me.chromiumore.satsystem.constant.EnergySystemConstants;
 import me.chromiumore.satsystem.domain.constellation.SatelliteConstellation;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "satellite")

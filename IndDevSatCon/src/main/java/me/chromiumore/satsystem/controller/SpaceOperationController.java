@@ -1,7 +1,7 @@
 package me.chromiumore.satsystem.controller;
 
 import lombok.AllArgsConstructor;
-import me.chromiumore.satsystem.domain.request.AddSatelliteRequest;
+import me.chromiumore.satsystem.domain.request.CreateAndAddSatelliteRequest;
 import me.chromiumore.satsystem.domain.request.MissionRequest;
 import me.chromiumore.satsystem.service.SpaceOperationCenterService;
 import org.springframework.http.HttpStatus;
@@ -15,7 +15,7 @@ public class SpaceOperationController {
     private final SpaceOperationCenterService spaceOperationCenterService;
 
     @PostMapping("/add-satellites")
-    public ResponseEntity<Void> addSatellites(@RequestBody AddSatelliteRequest request) {
+    public ResponseEntity<Void> addSatellites(@RequestBody CreateAndAddSatelliteRequest request) {
         spaceOperationCenterService.addSatellite(request);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

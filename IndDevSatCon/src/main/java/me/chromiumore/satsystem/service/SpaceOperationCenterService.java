@@ -3,7 +3,7 @@ package me.chromiumore.satsystem.service;
 import lombok.RequiredArgsConstructor;
 import me.chromiumore.satsystem.aop.LogExecutionTime;
 import me.chromiumore.satsystem.domain.constellation.SatelliteConstellation;
-import me.chromiumore.satsystem.domain.request.AddSatelliteRequest;
+import me.chromiumore.satsystem.domain.request.CreateAndAddSatelliteRequest;
 import me.chromiumore.satsystem.domain.request.StatusRequest;
 import me.chromiumore.satsystem.domain.request.MissionRequest;
 import me.chromiumore.satsystem.domain.satellite.Satellite;
@@ -11,7 +11,6 @@ import me.chromiumore.satsystem.domain.satellite.param.SatelliteParam;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 
 @RequiredArgsConstructor
 @Service
@@ -20,7 +19,7 @@ public class SpaceOperationCenterService {
     private final SatelliteService satelliteService;
 
     @LogExecutionTime
-    public void addSatellite(AddSatelliteRequest request) {
+    public void addSatellite(CreateAndAddSatelliteRequest request) {
         try {
             constellationService.showConstellationStatus(request.constellationName());
         } catch (Exception e) {
