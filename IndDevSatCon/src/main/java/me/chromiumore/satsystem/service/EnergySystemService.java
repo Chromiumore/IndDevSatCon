@@ -30,9 +30,9 @@ public class EnergySystemService {
                 .orElseThrow(() -> new RuntimeException("Энергосистема не найдена: " + id));
 
         if (request.batteryLevel() != null) energy.setBatteryLevel(request.batteryLevel());
-        if (request.lowBatteryThreshold() != null) energy.setBatteryLevel(request.lowBatteryThreshold());
-        if (request.minBattery() != null) energy.setBatteryLevel(request.minBattery());
-        if (request.maxBattery() != null) energy.setBatteryLevel(request.maxBattery());
+        if (request.lowBatteryThreshold() != null) energy.setLowBatteryThreshold(request.lowBatteryThreshold());
+        if (request.minBattery() != null) energy.setMinBattery(request.minBattery());
+        if (request.maxBattery() != null) energy.setMaxBattery(request.maxBattery());
 
         return energySystemRepository.save(energy);
     }
