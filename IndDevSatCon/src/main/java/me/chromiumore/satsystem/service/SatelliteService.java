@@ -42,12 +42,14 @@ public class SatelliteService {
         return satelliteRepository.findById(id);
     }
 
-    public Satellite updateSatellite(Long id, Satellite updatedSatellite) {
+    public Satellite updateSatellite(Long id, SatelliteParam param) {
         if (!satelliteRepository.existsById(id)) {
             throw new RuntimeException("Спутник не найден: " + id);
         }
-        updatedSatellite.setId(id);
-        return satelliteRepository.save(updatedSatellite);
+
+        Satellite satellite = createSatellite(param);
+        satellite.setId(id);
+        return satelliteRepository.save(satellite);
     }
 
     public void deleteSatellite(Long id) {

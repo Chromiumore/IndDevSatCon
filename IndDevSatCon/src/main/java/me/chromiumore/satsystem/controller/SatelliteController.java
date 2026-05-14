@@ -35,8 +35,8 @@ public class SatelliteController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Satellite> updatedSatellite(@PathVariable("id") Long id, @RequestBody Satellite satellite) {
-        Satellite updated = satelliteService.updateSatellite(id, satellite);
+    public ResponseEntity<Satellite> updatedSatellite(@PathVariable("id") Long id, @RequestBody SatelliteParam satelliteParam) {
+        Satellite updated = satelliteService.updateSatellite(id, satelliteParam);
         return ResponseEntity.ok(updated);
     }
 
