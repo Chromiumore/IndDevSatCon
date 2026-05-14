@@ -33,6 +33,22 @@ services:
         networks:
             - space-net
     
+    telemetry-service:
+        build: ./IndDevTelemetryService
+        container_name: telemetry-service
+        ports:
+            - "8082:8082"
+            - "9092:9092"
+        networks:
+            - space-net
+        restart: unless-stopped
+        healthcheck:
+            test: [ "CMD-SHELL", "nc -z localhost 9092" ]
+            interval: 10s
+            timeout: 5s
+            retries: 5
+            start_period: 30s
+    
     db:
         image: postgres:16-alpine
         container_name: postgres-db

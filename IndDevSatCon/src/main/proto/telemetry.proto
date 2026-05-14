@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package seminars;
+package me.chromiumore.satsystem;
 
 service TelemetryService {
   rpc StreamTelemetry (TelemetryRequest) returns (stream TelemetryUpdate);

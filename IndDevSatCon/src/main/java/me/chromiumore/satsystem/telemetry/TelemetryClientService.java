@@ -7,8 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import me.chromiumore.satsystem.repository.SatelliteRepository;
 import net.devh.boot.grpc.client.inject.GrpcClient;
 import org.springframework.stereotype.Service;
-import seminars.Telemetry;
-import seminars.TelemetryServiceGrpc;
+import me.chromiumore.satsystem.Telemetry;
+import me.chromiumore.satsystem.TelemetryServiceGrpc;
 
 @Slf4j
 @Service

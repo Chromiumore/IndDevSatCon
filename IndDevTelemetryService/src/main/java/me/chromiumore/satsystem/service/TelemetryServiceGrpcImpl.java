@@ -1,9 +1,9 @@
 package me.chromiumore.satsystem.service;
 
 import io.grpc.stub.StreamObserver;
+import me.chromiumore.satsystem.Telemetry;
+import me.chromiumore.satsystem.TelemetryServiceGrpc;
 import net.devh.boot.grpc.server.service.GrpcService;
-import seminars.Telemetry;
-import seminars.TelemetryServiceGrpc;
 
 import java.time.Instant;
 import java.util.List;
