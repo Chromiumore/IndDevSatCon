@@ -1,19 +1,12 @@
 server:
-  port: 8081
+  port: ${SERVER_PORT:8082}
 
+grpc:
+  server:
+    port: 9092
 
-app:
-  space-center-service:
-    url:
-      "http://localhost:8080/api/space-operation"
-    missions:
-      - targetType: CONSTELLATION
-        constellationName: "GeoStationary"
-        cron: "0 0 */6 * * *"  # каждые 6 часов
-      - targetType: SINGLE_SATELLITE
-        constellationName: "LowOrbit"
-        satelliteName: "Sat-1"
-        cron: "0 30 8 * * MON"  # каждый понедельник в 8:30
-      - targetType: CONSTELLATION
-        constellationName: "TestConstellation"
-        cron: "0 */1 * * * *"   # каждую минуту
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
