@@ -14,15 +14,15 @@ import org.springframework.web.client.RestClient;
 public class SpaceOperationClient {
     private final RestClient spaceOperationRestClient;
 
-    public void addSatellite(AddSatelliteRequest request) {
-        spaceOperationRestClient.post()
-                .uri("/add-satellites")
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(request)
-                .retrieve()
-                .toBodilessEntity();
-        log.info("Спутники добавлены в группировку {}", request.constellationName());
-    }
+//    public void addSatellite(AddSatelliteRequest request) {
+//        spaceOperationRestClient.post()
+//                .uri("/add-satellites")
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .body(request)
+//                .retrieve()
+//                .toBodilessEntity();
+//        log.info("Спутники добавлены в группировку {}", request.constellationName());
+//    }
 
     public void executeMission(MissionRequest request) {
         spaceOperationRestClient.post()

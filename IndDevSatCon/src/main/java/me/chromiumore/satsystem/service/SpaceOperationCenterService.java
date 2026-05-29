@@ -8,6 +8,7 @@ import me.chromiumore.satsystem.domain.request.StatusRequest;
 import me.chromiumore.satsystem.domain.request.MissionRequest;
 import me.chromiumore.satsystem.domain.satellite.Satellite;
 import me.chromiumore.satsystem.domain.satellite.param.SatelliteParam;
+import me.chromiumore.satsystem.repository.SatelliteRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.List;
 public class SpaceOperationCenterService {
     private final ConstellationService constellationService;
     private final SatelliteService satelliteService;
+    private final SatelliteRepository satelliteRepository;
 
     @LogExecutionTime
     public void addSatellite(CreateAndAddSatelliteRequest request) {
@@ -56,6 +58,7 @@ public class SpaceOperationCenterService {
                         .orElseThrow(() -> new RuntimeException("Спутник не найден: " + request.satelliteName()));
                 satellite.activate();
                 satellite.performMission();
+                satelliteRepository.save(satellite);
             }
         }
     }
