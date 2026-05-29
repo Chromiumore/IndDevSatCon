@@ -46,5 +46,7 @@ public class TelemetryClientService {
                 log.info("Стрим завершён");
             }
         };
+
+        asyncStub.streamTelemetry(request, responseObserver);
     }
 }
