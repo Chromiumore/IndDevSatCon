@@ -34,6 +34,6 @@ public class TelemetryServiceGrpcImpl extends TelemetryServiceGrpc.TelemetryServ
             }  catch (Exception e) {
                 responseObserver.onError(e);
             }
-        }, 0, 2, TimeUnit.SECONDS);
+        }, 0, 1, TimeUnit.MINUTES);
     }
 }

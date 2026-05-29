@@ -5,6 +5,9 @@ import me.chromiumore.satsystem.domain.satellite.Satellite;
 import me.chromiumore.satsystem.exception.SpaceOperationException;
 import me.chromiumore.satsystem.factory.SatelliteFactory;
 import me.chromiumore.satsystem.domain.satellite.param.SatelliteParam;
+import me.chromiumore.satsystem.kafka.KafkaService;
+import me.chromiumore.satsystem.kafka.KafkaUtils;
+import me.chromiumore.satsystem.kafka.SatelliteEvent;
 import me.chromiumore.satsystem.repository.SatelliteRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,8 +18,11 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class SatelliteService {
+    private static final String SATELLITE_EVENTS_TOPIC = "satellites-events";
+
     private final SatelliteRepository satelliteRepository;
     private final List<SatelliteFactory> satelliteFactories;
+    private final KafkaService kafkaService;
 
     private Satellite createSatellite(SatelliteParam param) throws SpaceOperationException {
         for (SatelliteFactory factory : satelliteFactories) {
@@ -29,7 +35,14 @@ public class SatelliteService {
 
     public Satellite createAndSaveSatellite(SatelliteParam param) {
         Satellite satellite = createSatellite(param);
-        return satelliteRepository.save(satellite);
+        Satellite saved = satelliteRepository.save(satellite);
+
+        kafkaService.sendToKafkaSatellite(
+                SATELLITE_EVENTS_TOPIC,
+                KafkaUtils.createEvent(saved, SatelliteEvent.EventType.CREATED)
+        );
+
+        return saved;
     }
 
     @Transactional(readOnly = true)
@@ -53,9 +66,14 @@ public class SatelliteService {
     }
 
     public void deleteSatellite(Long id) {
-        if (!satelliteRepository.existsById(id)) {
-            throw new RuntimeException("Спутник не найден: " + id);
-        }
+        Satellite satellite = satelliteRepository.findById(id)
+                        .orElseThrow(() -> new RuntimeException("Спутник не найден: " + id));
+
         satelliteRepository.deleteById(id);
+
+        kafkaService.sendToKafkaSatellite(
+                SATELLITE_EVENTS_TOPIC,
+                KafkaUtils.createEvent(satellite, SatelliteEvent.EventType.DELETED)
+        );
     }
 }
