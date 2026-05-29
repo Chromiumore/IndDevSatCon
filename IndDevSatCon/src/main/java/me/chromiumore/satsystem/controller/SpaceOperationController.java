@@ -14,12 +14,6 @@ import org.springframework.web.bind.annotation.*;
 public class SpaceOperationController {
     private final SpaceOperationCenterService spaceOperationCenterService;
 
-    @PostMapping("/add-satellites")
-    public ResponseEntity<Void> addSatellites(@RequestBody CreateAndAddSatelliteRequest request) {
-        spaceOperationCenterService.addSatellite(request);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
-    }
-
     @PostMapping("/missions")
     public ResponseEntity<Void> executeMission(@RequestBody MissionRequest request) {
         spaceOperationCenterService.executeMission(request);
