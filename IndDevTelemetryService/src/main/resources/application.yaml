@@ -10,3 +10,14 @@ management:
     web:
       exposure:
         include: "*"
+
+spring:
+  kafka:
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:29093}
+    consumer:
+      group-id: telemetry-service-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "me.chromiumore.satsystem,java.utils,java.lang"
+        spring.json.value.default.type: "me.chromiumore.satsystem.kafka.SatelliteEvent"

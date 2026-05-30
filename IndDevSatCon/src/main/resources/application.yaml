@@ -29,9 +29,9 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.trusted.packages: "me.chromiumore.satsystem,java.utils,java.lang"
-      producer:
-        key-serializer: org.apache.kafka.common.serialization.StringSerializer
-        value-deserializer: org.springframework.kafka.support.serializer.JsonSerializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
 grpc:
   client:

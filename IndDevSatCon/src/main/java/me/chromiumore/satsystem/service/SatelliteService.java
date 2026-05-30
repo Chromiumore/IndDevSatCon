@@ -18,7 +18,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class SatelliteService {
-    private static final String SATELLITE_EVENTS_TOPIC = "satellites-events";
+    private static final String SATELLITE_EVENTS_TOPIC = "satellite-events";
 
     private final SatelliteRepository satelliteRepository;
     private final List<SatelliteFactory> satelliteFactories;
