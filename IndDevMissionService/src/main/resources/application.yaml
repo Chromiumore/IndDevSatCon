@@ -1,11 +1,10 @@
 server:
-  port: 8081
+  port: ${SERVER_PORT:8081}
 
 
 app:
   space-center-service:
-    url:
-      "http://localhost:8080/api/space-operation"
+    url: ${SERVER_URL:http://localhost:8080}/api/space-operation
     missions:
       - targetType: CONSTELLATION
         constellationName: "GeoStationary"
