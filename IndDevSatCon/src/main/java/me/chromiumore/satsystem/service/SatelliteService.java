@@ -8,6 +8,7 @@ import me.chromiumore.satsystem.domain.satellite.param.SatelliteParam;
 import me.chromiumore.satsystem.kafka.KafkaService;
 import me.chromiumore.satsystem.kafka.KafkaUtils;
 import me.chromiumore.satsystem.kafka.SatelliteEvent;
+import me.chromiumore.satsystem.kafka.outbox.OutboxService;
 import me.chromiumore.satsystem.repository.SatelliteRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +23,7 @@ public class SatelliteService {
 
     private final SatelliteRepository satelliteRepository;
     private final List<SatelliteFactory> satelliteFactories;
-    private final KafkaService kafkaService;
+    private final OutboxService outboxService;
 
     private Satellite createSatellite(SatelliteParam param) throws SpaceOperationException {
         for (SatelliteFactory factory : satelliteFactories) {
@@ -37,8 +38,8 @@ public class SatelliteService {
         Satellite satellite = createSatellite(param);
         Satellite saved = satelliteRepository.save(satellite);
 
-        kafkaService.sendToKafkaSatellite(
-                SATELLITE_EVENTS_TOPIC,
+        outboxService.publishToOutbox(
+                saved.getId(),
                 KafkaUtils.createEvent(saved, SatelliteEvent.EventType.CREATED)
         );
 
@@ -71,8 +72,8 @@ public class SatelliteService {
 
         satelliteRepository.deleteById(id);
 
-        kafkaService.sendToKafkaSatellite(
-                SATELLITE_EVENTS_TOPIC,
+        outboxService.publishToOutbox(
+                id,
                 KafkaUtils.createEvent(satellite, SatelliteEvent.EventType.DELETED)
         );
     }

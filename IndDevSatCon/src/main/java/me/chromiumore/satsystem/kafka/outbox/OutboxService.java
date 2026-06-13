@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import me.chromiumore.satsystem.kafka.KafkaService;
 import me.chromiumore.satsystem.kafka.SatelliteEvent;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +17,13 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 @Service
+@EnableScheduling
 public class OutboxService {
     private final KafkaService kafkaService;
     private final OutboxEventRepository outboxRepository;
     private final ObjectMapper objectMapper;
 
-    private static final String SATELLITE_EVENTS_TOPIC = "satellites-events";
+    private static final String SATELLITE_EVENTS_TOPIC = "satellite-events";
     private static final int BATCH_SIZE = 50;
 
     public void publishToOutbox(Long satId, SatelliteEvent event) {
