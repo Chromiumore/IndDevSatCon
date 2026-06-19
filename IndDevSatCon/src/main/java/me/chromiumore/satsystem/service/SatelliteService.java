@@ -37,7 +37,7 @@ public class SatelliteService {
         throw new SpaceOperationException("Factory not found");
     }
 
-    @CacheEvict(value = "satellites", allEntries = true)
+    @CacheEvict(value = "satellites:all", allEntries = true)
     public Satellite createAndSaveSatellite(SatelliteParam param) {
         Satellite satellite = createSatellite(param);
         Satellite saved = satelliteRepository.save(satellite);
@@ -50,19 +50,22 @@ public class SatelliteService {
         return saved;
     }
 
-    @Cacheable(value = "satellites", key = "'satellites::all'")
+    @Cacheable(value = "satellites::all", key = "'all'")
     @Transactional(readOnly = true)
     public List<Satellite> getAllSatellites() {
         return satelliteRepository.findAll();
     }
 
-    @Cacheable(value = "satellite", key = "'satellite::' + #id")
+    @Cacheable(value = "satellite", key = "#id")
     @Transactional(readOnly = true)
     public Optional<Satellite> getSatelliteById(Long id) {
         return satelliteRepository.findById(id);
     }
 
-    @CacheEvict(value = "satellite", key = "'satellite::' + #id")
+    @Caching(evict = {
+            @CacheEvict(value = "satellite", key = "#id"),
+            @CacheEvict(value = "satellites::all", allEntries = true)
+    })
     public Satellite updateSatellite(Long id, SatelliteParam param) {
         if (!satelliteRepository.existsById(id)) {
             throw new RuntimeException("Спутник не найден: " + id);
@@ -74,8 +77,8 @@ public class SatelliteService {
     }
 
     @Caching(evict = {
-            @CacheEvict(value = "satellite", key = "'satellite::' + #id"),
-            @CacheEvict(value = "satellites", allEntries = true)
+            @CacheEvict(value = "satellite", key = "#id"),
+            @CacheEvict(value = "satellites::all", allEntries = true)
     })
     public void deleteSatellite(Long id) {
         Satellite satellite = satelliteRepository.findById(id)

@@ -1,10 +1,12 @@
 package me.chromiumore.satsystem.domain.satellite;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
 
 @Embeddable
 public class SatelliteState {
+    @JsonIgnore
     private boolean isActive = false;
     @Getter
     private String statusMessage;

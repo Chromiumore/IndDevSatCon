@@ -41,7 +41,7 @@ public class ConstellationService {
         satelliteRepository.save(satellite);
     }
 
-    @Cacheable(value = "constellation", key = "'constellation::' + #constellationName")
+    @Cacheable(value = "constellation", key = "#constellationName")
     @Transactional(readOnly = true)
     public SatelliteConstellation getConstellationByName(String constellationName) {
         return constellationRepository.findByConstellationName(constellationName)
@@ -66,8 +66,8 @@ public class ConstellationService {
     }
 
     @Caching(evict = {
-            @CacheEvict(value = "constellation", key = "'constellation::' + #constellationName"),
-            @CacheEvict(value = "satellites", allEntries = true)
+            @CacheEvict(value = "constellation", key = "#constellationName"),
+            @CacheEvict(value = "satellites::all", allEntries = true)
     })
     public void removeSatelliteFromConstellation(String constellationName, String satelliteName) {
         SatelliteConstellation constellation = getConstellationByName(constellationName);

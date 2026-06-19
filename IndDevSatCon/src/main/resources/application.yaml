@@ -16,10 +16,20 @@ spring:
         format_sql: true
   cache:
     type: redis
-  data:
     redis:
-      host: ${SPRING_REDIS_HOST:localhost}
-      port: ${SPRING_REDIS_PORT:6379}
+      time-to-live: 10m
+      cache-null-values: false
+      key-prefix: "satellite-server:"
+  redis:
+    host: ${SPRING_REDIS_HOST:localhost}
+    port: ${SPRING_REDIS_PORT:6379}
+    timeout: 2000ms
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 2
+        time-between-eviction-runs: 10s
   sql:
     init:
       mode: ${SPRING_SQL_INIT_MODE:never}
