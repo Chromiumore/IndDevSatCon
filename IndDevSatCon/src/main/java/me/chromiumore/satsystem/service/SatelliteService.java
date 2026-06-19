@@ -10,6 +10,9 @@ import me.chromiumore.satsystem.kafka.KafkaUtils;
 import me.chromiumore.satsystem.kafka.SatelliteEvent;
 import me.chromiumore.satsystem.kafka.outbox.OutboxService;
 import me.chromiumore.satsystem.repository.SatelliteRepository;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,6 +37,7 @@ public class SatelliteService {
         throw new SpaceOperationException("Factory not found");
     }
 
+    @CacheEvict(value = "satellites", allEntries = true)
     public Satellite createAndSaveSatellite(SatelliteParam param) {
         Satellite satellite = createSatellite(param);
         Satellite saved = satelliteRepository.save(satellite);
@@ -46,16 +50,19 @@ public class SatelliteService {
         return saved;
     }
 
+    @Cacheable(value = "satellites", key = "'satellites::all'")
     @Transactional(readOnly = true)
     public List<Satellite> getAllSatellites() {
         return satelliteRepository.findAll();
     }
 
+    @Cacheable(value = "satellite", key = "'satellite::' + #id")
     @Transactional(readOnly = true)
     public Optional<Satellite> getSatelliteById(Long id) {
         return satelliteRepository.findById(id);
     }
 
+    @CacheEvict(value = "satellite", key = "'satellite::' + #id")
     public Satellite updateSatellite(Long id, SatelliteParam param) {
         if (!satelliteRepository.existsById(id)) {
             throw new RuntimeException("Спутник не найден: " + id);
@@ -66,6 +73,10 @@ public class SatelliteService {
         return satelliteRepository.save(satellite);
     }
 
+    @Caching(evict = {
+            @CacheEvict(value = "satellite", key = "'satellite::' + #id"),
+            @CacheEvict(value = "satellites", allEntries = true)
+    })
     public void deleteSatellite(Long id) {
         Satellite satellite = satelliteRepository.findById(id)
                         .orElseThrow(() -> new RuntimeException("Спутник не найден: " + id));

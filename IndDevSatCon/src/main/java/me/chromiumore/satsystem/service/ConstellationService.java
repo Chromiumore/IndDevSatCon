@@ -4,6 +4,9 @@ import me.chromiumore.satsystem.repository.ConstellationRepository;
 import me.chromiumore.satsystem.domain.satellite.Satellite;
 import me.chromiumore.satsystem.domain.constellation.SatelliteConstellation;
 import me.chromiumore.satsystem.repository.SatelliteRepository;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,6 +41,7 @@ public class ConstellationService {
         satelliteRepository.save(satellite);
     }
 
+    @Cacheable(value = "constellation", key = "'constellation::' + #constellationName")
     @Transactional(readOnly = true)
     public SatelliteConstellation getConstellationByName(String constellationName) {
         return constellationRepository.findByConstellationName(constellationName)
@@ -61,6 +65,10 @@ public class ConstellationService {
         constellationRepository.deleteById(id);
     }
 
+    @Caching(evict = {
+            @CacheEvict(value = "constellation", key = "'constellation::' + #constellationName"),
+            @CacheEvict(value = "satellites", allEntries = true)
+    })
     public void removeSatelliteFromConstellation(String constellationName, String satelliteName) {
         SatelliteConstellation constellation = getConstellationByName(constellationName);
         Satellite satellite = constellation.getSatellites().stream()

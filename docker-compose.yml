@@ -9,6 +9,8 @@ services:
             - SPRING_DATASOURCE_PASSWORD=postgres
             - SPRING_JPA_HIBERNATE_DDL_AUTO=update
             - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9093
+            - SPRING_REDIS_HOST=redis
+            - SPRING_REDIS_PORT=6379
         ports:
             - "8080:8080"
         networks:
@@ -114,9 +116,18 @@ services:
         networks:
             - space-net
             
+    redis:
+        image: redis:7.4-alpine
+        container_name: redis_cache
+        ports:
+          - "6379:6379"
+        volumes:
+          - redis_data:/data
+            
 networks:
     space-net:
         driver: bridge
         
 volumes:
     pgdata:
+    redis_data:
